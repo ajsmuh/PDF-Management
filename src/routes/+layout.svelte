@@ -6,13 +6,6 @@
     let menuOpen = $state(false);
 </script>
 
- 
-<script>
-    // Layout — Header und Footer für alle Seiten
-    let { data, children } = $props();
-    // Mobile Menü State
-    let menuOpen = $state(false);
-</script>
 <div class="min-h-screen flex flex-col bg-slate-50">
     <!-- Header -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
