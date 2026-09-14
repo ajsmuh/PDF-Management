@@ -53,8 +53,35 @@
                     </a>
                 {/if}
             </nav>
-			
-		</div>	
+			 
+			<!-- Mobile Hamburger -->
+            <button class="sm:hidden text-slate-500" onclick={() => menuOpen = !menuOpen}>
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                </svg>
+            </button>
+        </div>
+        
+		<!-- Mobile Menu -->
+        {#if menuOpen}
+            <div class="sm:hidden border-t border-slate-100 bg-white px-4 py-3 flex flex-col gap-3 text-sm">
+                {#if data.user}
+                    <span class="text-slate-500">@{data.user.username}</span>
+                    {#if data.user.role === 'admin'}
+                        <a href="/admin" class="text-blue-600 font-semibold">Admin Panel</a>
+                    {:else}
+                        <a href="/upload" class="text-blue-600 font-semibold">Meine PDFs</a>
+                    {/if}
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="text-red-500">Logout</button>
+                    </form>
+                {:else}
+                    <a href="/login" class="text-slate-600">Login</a>
+                    <a href="/register" class="text-blue-600 font-semibold">Register</a>
+                {/if}
+            </div>
+        {/if}
     </header>
 
     <!-- Hauptinhalt -->
