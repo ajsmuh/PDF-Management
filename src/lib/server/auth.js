@@ -23,3 +23,18 @@ await pool.execute(
 );
 return sessionId;
 }
+
+// User anhand Session-ID laden — prüft ob Session noch gültig ist
+export async function validateSession(sessionId) {
+    // Kein Cookie → nicht eingeloggt
+    if (!sessionId) return null;
+
+    const [rows] = await pool.execute(
+        `SELECT u.id, u.username, u.role
+         FROM sessions s
+         JOIN users u ON s.user_id = u.id
+         WHERE s.id = ? AND s.expires_at > NOW()`,
+        [sessionId]
+    );
+    return rows[0] ?? null;
+}
