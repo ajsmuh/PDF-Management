@@ -1,9 +1,7 @@
 <script>
-	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
+    // Layout — Header und Footer für alle Seiten
+    let { data, children } = $props();
 
-	let { children } = $props();
+    // Mobile Menü State
+    let menuOpen = $state(false);
 </script>
-
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
-{@render children()}
