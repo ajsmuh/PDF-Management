@@ -21,6 +21,39 @@
             <a href="/" class="font-extrabold text-lg text-slate-900 tracking-tight hover:text-blue-600 transition-colors">
                 📄 PDF Manager
             </a>
+			
+			<!-- Desktop Nav -->
+            <nav class="hidden sm:flex items-center gap-3 text-sm">
+                {#if data.user}
+                    <span class="text-slate-500">@{data.user.username}</span>
+
+                    {#if data.user.role === 'admin'}
+                        <a href="/admin"
+                           class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1.5 rounded-lg transition-colors text-xs">
+                            Admin Panel
+                        </a>
+                    {:else}
+                        <a href="/upload"
+                           class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1.5 rounded-lg transition-colors text-xs">
+                            Meine PDFs
+                        </a>
+                    {/if}
+
+                    <form action="/logout" method="POST">
+                        <button type="submit"
+                                class="text-slate-400 hover:text-red-500 transition-colors text-xs">
+                            Logout
+                        </button>
+                    </form>
+                {:else}
+                    <a href="/login" class="text-slate-500 hover:text-slate-900 transition-colors">Login</a>
+                    <a href="/register"
+                       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1.5 rounded-lg transition-colors text-xs">
+                        Register
+                    </a>
+                {/if}
+            </nav>
+			
 		</div>	
     </header>
 
