@@ -38,3 +38,9 @@ export async function validateSession(sessionId) {
     );
     return rows[0] ?? null;
 }
+
+// Session löschen beim Logout
+export async function invalidateSession(sessionId) {
+if (!sessionId) return;
+await pool.execute('DELETE FROM sessions WHERE id = ?', [sessionId]);
+}
