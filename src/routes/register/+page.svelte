@@ -20,7 +20,8 @@
             </div>
         {/if}
         
-                    <!-- Username -->
+        <form action="?/register" method="POST" class="space-y-5">
+            <!-- Username -->
             <div class="relative">
                 <input type="text" id="username" name="username"
                        autocomplete="username" required placeholder=" "
@@ -62,6 +63,17 @@
                         </svg>
                     {/if}
                 </button>
-            </div>    
+            </div>  
+
+            <button type="submit"
+                class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors text-sm">
+                Konto erstellen
+            </button>
+        </form>
+
+        <p class="text-slate-500 text-sm text-center mt-6">
+            Schon ein Konto?
+            <a href="/login" class="text-blue-600 font-semibold hover:underline ml-1">Einloggen</a>
+        </p>
     </div>
 </div>
