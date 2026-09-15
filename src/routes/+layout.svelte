@@ -1,4 +1,6 @@
 <script>
+    import "./layout.css";
+
     // Layout — Header und Footer für alle Seiten
     let { data, children } = $props();
 
