@@ -51,7 +51,33 @@
                             peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-slate-500">
                     Passwort
                 </label>
+                
+                <!-- Auge Toggle -->
+                <button type="button" onclick={() => showPassword = !showPassword}
+                        class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                    {#if showPassword}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/><path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/><path d="M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22"/>
+                        </svg>
+                    {:else}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    {/if}
+                </button>
             </div>
+
+            <button type="submit"
+                    class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-semibold
+                           rounded-lg transition-colors text-sm">
+                Einloggen
+            </button>
         </form>
+        
+        <p class="text-slate-500 text-sm text-center mt-6">
+            Noch kein Konto?
+            <a href="/register" class="text-blue-600 font-semibold hover:underline ml-1">Registrieren</a>
+        </p>
+    
     </div>
 </div>
