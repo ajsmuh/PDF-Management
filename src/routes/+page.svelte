@@ -20,5 +20,23 @@
             Lade PDFs hoch, verwalte sie und lade sie jederzeit wieder herunter.
             Einfach, schnell und sicher.
         </p>
+
+        <div class="flex gap-3 justify-center">
+            {#if data.user}
+                <a href="/upload"
+                   class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm">
+                    Zu meinen PDFs
+                </a>
+            {:else}
+                <a href="/register"
+                   class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-colors text-sm">
+                    Kostenlos starten
+                </a>
+                <a href="/login"
+                   class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium px-6 py-3 rounded-xl transition-colors text-sm">
+                    Einloggen
+                </a>
+            {/if}
+        </div>
     </div>
 </section>
