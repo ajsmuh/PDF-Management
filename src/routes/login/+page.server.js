@@ -28,5 +28,16 @@ export const actions = {
         if (!(await verifyPassword(password, rows[0].password_hash))) {
             return fail(400, { error: 'Falsches Passwort.' });
         }
+
+        // Session erstellen und Cookie setzen
+        const sessionId = await createSession(rows[0].id);
+        cookies.set('session', sessionId, {
+            path: '/',
+            httpOnly: true,
+            sameSite: 'strict',
+            maxAge: 60 * 60 * 24 * 30
+        });
+
+        throw redirect(303, '/upload');
     }
 };
