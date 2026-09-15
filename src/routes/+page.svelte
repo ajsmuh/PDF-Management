@@ -40,3 +40,14 @@
         </div>
     </div>
 </section>
+
+<!-- Features Section -->
+<section class="bg-slate-100 py-16">
+    <div class="max-w-5xl mx-auto px-6">
+
+        <h2 class="text-2xl font-extrabold text-slate-900 text-center mb-10">
+            Warum PDF Manager?
+        </h2>
+
+    </div>
+</section>
