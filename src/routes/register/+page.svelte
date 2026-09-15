@@ -13,6 +13,12 @@
             <h1 class="text-3xl font-extrabold text-slate-900 mt-1">Registrieren</h1>
         </div>
 
-        
+        <!-- Fehlermeldung -->
+        {#if form?.error}
+            <div class="bg-rose-50 border border-rose-100 text-rose-600 text-sm px-4 py-3 rounded-xl mb-5 flex items-center gap-2">
+                <span>⚠</span> {form.error}
+            </div>
+        {/if}
+
     </div>
 </div>
