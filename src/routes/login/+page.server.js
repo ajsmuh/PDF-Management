@@ -1,0 +1,32 @@
+// Login Action
+import { fail, redirect } from '@sveltejs/kit';
+import pool from '$lib/server/database.js';
+import { verifyPassword, createSession } from '$lib/server/auth.js';
+
+export const actions = {
+    login: async ({ request, cookies }) => {
+        const form = await request.formData();
+        const username = form.get('username');
+        const password = form.get('password');
+
+        // Felder leer prüfen
+        if (!username || !password) {
+            return fail(400, { error: 'Bitte alle Felder ausfüllen.' });
+        }
+
+        // User in DB suchen
+        const [rows] = await pool.execute(
+            'SELECT * FROM users WHERE username = ?',
+            [username]
+        );
+
+        if (rows.length === 0) {
+            return fail(400, { error: 'Username nicht gefunden.' });
+        }
+
+        // Passwort prüfen
+        if (!(await verifyPassword(password, rows[0].password_hash))) {
+            return fail(400, { error: 'Falsches Passwort.' });
+        }
+    }
+};

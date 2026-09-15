@@ -8,4 +8,3 @@ export async function load({ cookies }) {
     const user = await validateSession(sessionId);
     return { user };
 }
- 
