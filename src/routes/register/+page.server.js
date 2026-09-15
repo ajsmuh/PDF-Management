@@ -14,6 +14,19 @@ export const actions = {
             return fail(400, { error: 'Bitte alle Felder ausfüllen.' });
         }
 
-        
+        let result;
+        try {
+            // User in DB speichern mit gehaschtem Passwort
+            [result] = await pool.execute(
+                'INSERT INTO users (username, password_hash) VALUES (?, ?)',
+                [username, await hashPassword(password)]
+            );
+        } catch (err) {
+            // Username bereits vergeben
+            if (err.code === 'ER_DUP_ENTRY') {
+                return fail(400, { error: 'Username ist bereits vergeben.' });
+            }
+            return fail(500, { error: 'Registrierung fehlgeschlagen.' });
+        }
     }
 };
