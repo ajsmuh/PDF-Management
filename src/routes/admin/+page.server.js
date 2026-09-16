@@ -58,4 +58,22 @@ export const actions = {
         await pool.execute('DELETE FROM pdfs WHERE id = ?', [id]);
         return { success: true };
     },
+
+    // User löschen
+    deleteUser: async ({ request, cookies }) => {
+        const sessionId = cookies.get('session');
+        const user = await validateSession(sessionId);
+        if (!user || user.role !== 'admin') throw error(403, 'Kein Zugriff');
+
+        const formData = await request.formData();
+        const id = formData.get('id');
+
+        // Admin kann sich nicht selbst löschen
+        if (parseInt(id) === user.id) {
+            return fail(400, { error: 'Du kannst dich nicht selbst löschen.' });
+        }
+
+        await pool.execute('DELETE FROM users WHERE id = ?', [id]);
+        return { success: true };
+    }
 };
