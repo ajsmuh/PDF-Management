@@ -97,5 +97,50 @@
                     {/each}
                 </div>
             {/if}
+                <!-- User Tabelle -->
+        {:else}
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <table class="w-full text-sm">
+                    <thead class="bg-slate-50 border-b border-slate-200">
+                        <tr>
+                            <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">User</th>
+                            <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Rolle</th>
+                            <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Erstellt</th>
+                            <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Aktion</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        {#each data.users as u (u.id)}
+                            <tr class="hover:bg-slate-50 transition-colors">
+                                <td class="px-5 py-3 font-medium text-slate-800">@{u.username}</td>
+                                <td class="px-5 py-3">
+                                    <span class="px-2 py-0.5 rounded-full text-xs font-semibold
+                                                 {u.role === 'admin' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}">
+                                        {u.role ?? 'user'}
+                                    </span>
+                                </td>
+                                <td class="px-5 py-3 text-slate-400 text-xs">
+                                    {new Date(u.created_at).toLocaleDateString('de-AT')}
+                                </td>
+                                <td class="px-5 py-3 text-right">
+                                    {#if u.id !== data.user.id}
+                                        <form action="?/deleteUser" method="POST" class="inline">
+                                            <input type="hidden" name="id" value={u.id} />
+                                            <button type="submit"
+                                                    onclick={(e) => { if (!confirm(`User ${u.username} wirklich löschen?`)) e.preventDefault(); }}
+                                                    class="text-red-500 hover:text-red-700 text-xs font-semibold transition-colors">
+                                                Löschen
+                                            </button>
+                                        </form>
+                                    {:else}
+                                        <span class="text-slate-300 text-xs">Du</span>
+                                    {/if}
+                                </td>
+                            </tr>
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+        {/if}
     </div>
 </div>
