@@ -22,5 +22,32 @@
                 {form.error}
             </div>
         {/if}
+
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">User</p>
+                <p class="text-3xl font-extrabold text-slate-900">{data.users.length}</p>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+                <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">PDFs</p>
+                <p class="text-3xl font-extrabold text-slate-900">{data.pdfs.length}</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex bg-white rounded-2xl border border-slate-200 shadow-sm p-1 mb-6 w-fit gap-1">
+            <button onclick={() => activeTab = 'pdfs'}
+                    class="px-5 py-2 rounded-xl text-sm font-semibold transition-all
+                           {activeTab === 'pdfs' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-800'}">
+                PDFs ({data.pdfs.length})
+            </button>
+            <button onclick={() => activeTab = 'users'}
+                    class="px-5 py-2 rounded-xl text-sm font-semibold transition-all
+                           {activeTab === 'users' ? 'bg-blue-600 text-white' : 'text-slate-500 hover:text-slate-800'}">
+                User ({data.users.length})
+            </button>
+        </div>
     </div>
 </div>
