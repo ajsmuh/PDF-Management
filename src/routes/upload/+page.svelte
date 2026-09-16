@@ -42,5 +42,18 @@
                 </button>
             </form>
         </div>
+
+        <!-- PDF Liste -->
+        <h2 class="font-bold text-slate-600 text-xs uppercase tracking-widest mb-3">
+            Meine PDFs ({data.pdfs.length})
+        </h2>
+
+        {#if data.pdfs.length === 0}
+            <div class="bg-white rounded-2xl border border-slate-200 text-center py-14">
+                <p class="text-slate-400 text-sm">Noch keine PDFs hochgeladen.</p>
+            </div>
+        {:else}
+        
+        {/if}
     </div>
 </div>
