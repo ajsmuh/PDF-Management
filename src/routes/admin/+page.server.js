@@ -30,3 +30,32 @@ export async function load({ cookies }) {
 
     return { user, users, pdfs };
 }
+
+export const actions = {
+    // PDF löschen — Admin kann alle PDFs löschen
+    deletePdf: async ({ request, cookies }) => {
+        const sessionId = cookies.get('session');
+        const user = await validateSession(sessionId);
+        if (!user || user.role !== 'admin') throw error(403, 'Kein Zugriff');
+
+        const formData = await request.formData();
+        const id = formData.get('id');
+
+        // Blob-URL holen
+        const [rows] = await pool.execute(
+            'SELECT url FROM pdfs WHERE id = ?', [id]
+        );
+
+        // Aus Vercel Blob löschen
+        if (rows.length > 0) {
+            try {
+                await del(rows[0].url, { token: BLOB_READ_WRITE_TOKEN });
+            } catch (err) {
+                console.warn('Blob löschen fehlgeschlagen:', err.message);
+            }
+        }
+
+        await pool.execute('DELETE FROM pdfs WHERE id = ?', [id]);
+        return { success: true };
+    },
+};
