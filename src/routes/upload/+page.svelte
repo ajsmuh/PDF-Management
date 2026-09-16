@@ -23,6 +23,24 @@
                     {form.error}
                 </div>
             {/if}
+
+            <form action="?/upload" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <!-- File Input — nur PDFs -->
+                <input type="file"
+                       name="pdf"
+                       accept="application/pdf"
+                       required
+                       class="w-full text-slate-500 text-sm
+                              file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                              file:bg-blue-600 file:text-white file:font-semibold
+                              file:cursor-pointer hover:file:bg-blue-700 file:text-sm" />
+
+                <button type="submit"
+                        class="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white
+                               font-semibold rounded-lg transition-colors text-sm">
+                    Hochladen
+                </button>
+            </form>
         </div>
     </div>
 </div>
