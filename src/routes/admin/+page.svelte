@@ -23,7 +23,12 @@
             </div>
         {/if}
 
+<<<<<<< HEAD
                 <!-- Stats -->
+=======
+
+        <!-- Stats -->
+>>>>>>> temp-migration
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
             <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
                 <p class="text-xs text-slate-400 uppercase tracking-widest mb-1">User</p>
@@ -48,7 +53,10 @@
                 User ({data.users.length})
             </button>
         </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> temp-migration
     </div>
 </div>
