@@ -83,10 +83,7 @@
     <main class="flex-1">
         {@render children()}
     </main>
-    <!-- Footer -->
-    <footer class="bg-white border-t border-slate-100 py-6 text-center text-slate-400 text-xs">
-        © 2025 PDF Manager - WAE Übung
-    </footer>
+    
 </div>
  
  
