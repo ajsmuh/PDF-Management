@@ -50,7 +50,7 @@
             </nav>
 			 
 			<!-- Mobile Hamburger -->
-            <button class="sm:hidden text-slate-500" onclick={() => menuOpen = !menuOpen}>
+            <button class="sm:hidden text-slate-500" onclick={() => menuOpen = !menuOpen} aria-label="Menü öffnen">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d={menuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
